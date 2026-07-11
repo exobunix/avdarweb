@@ -62,38 +62,38 @@ export default function AdminLogin() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.08),transparent_40%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(249,115,22,0.08),transparent_40%)]" />
 
-      <Card className="w-full max-w-md glass-panel relative z-10 border border-white/10 bg-white/5 backdrop-blur-xl">
+      <Card className="w-full max-w-md glass-panel relative z-10 border border-border/50 bg-card/75 backdrop-blur-xl shadow-2xl">
         <CardHeader className="space-y-1 text-center">
           <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-2">
             <ShieldAlert className="w-6 h-6 text-primary animate-pulse" />
           </div>
           <CardTitle className="text-2xl font-bold text-gradient">Admin Portal</CardTitle>
-          <CardDescription className="text-white/60">
+          <CardDescription className="text-muted-foreground">
             Sign in to manage the Avdar Innovations website
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-white/80">Username</Label>
+              <Label htmlFor="username" className="text-foreground/80 font-medium">Username</Label>
               <Input
                 id="username"
                 type="text"
                 placeholder="admin"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50"
+                className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/45 focus:border-primary/50"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white/80">Password</Label>
+              <Label htmlFor="password" className="text-foreground/80 font-medium">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50"
+                className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/45 focus:border-primary/50"
               />
             </div>
           </CardContent>
