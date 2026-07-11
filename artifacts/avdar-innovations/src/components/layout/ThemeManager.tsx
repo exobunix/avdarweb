@@ -13,6 +13,19 @@ export function ThemeManager() {
     }
   }, [theme]);
 
+  // Apply dark/light class to root immediately when mode changes
+  useEffect(() => {
+    const root = document.documentElement;
+    if (mode === "dark") {
+      root.classList.add("dark");
+      root.classList.remove("light");
+    } else {
+      root.classList.add("light");
+      root.classList.remove("dark");
+    }
+  }, [mode]);
+
+  // Apply custom database theme colors/fonts
   useEffect(() => {
     if (!theme) return;
     const colors = mode === "dark" ? theme.customDark : theme.customLight;
@@ -60,14 +73,6 @@ export function ThemeManager() {
         link.href = href;
         document.head.appendChild(link);
       }
-    }
-
-    if (mode === "dark") {
-      root.classList.add("dark");
-      root.classList.remove("light");
-    } else {
-      root.classList.add("light");
-      root.classList.remove("dark");
     }
   }, [theme, mode]);
 
