@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Avdar Innovations"
+version = "1.0.0"
+id = "artifacts/avdar-innovations"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19678
+
+[services.development]
+run = "pnpm --filter @workspace/avdar-innovations run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/avdar-innovations", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/avdar-innovations/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19678"
+BASE_PATH = "/"

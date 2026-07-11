@@ -1,0 +1,991 @@
+Below is a **master prompt** you can paste directly into **Replit AI Agent**. It is written as if you are hiring a senior UI/UX team, creative director, motion designer, and full-stack developer. It also instructs Replit AI to use your uploaded pitch deck as the primary content source while expanding it into a premium corporate website. The prompt incorporates the vision, products, and messaging from your pitch deck, including your AI business operating ecosystem, mission, vision, and product offerings. 
+
+---
+
+# MASTER PROMPT FOR REPLIT AI
+
+## Project Overview
+
+I want you to design and develop a world-class premium website for my company.
+
+**Company Name**
+
+Avdar Innovations Pvt. Ltd.
+
+Founder & Director
+
+Adarsh Deep Sachan
+
+We are an AI-first software company building enterprise applications, AI products, SaaS platforms, web applications, mobile applications, ERP, CRM, POS, AI Automation Systems, Cloud Solutions and Digital Transformation solutions.
+
+The website should look like a combination of
+
+Apple
+Stripe
+Framer
+Linear
+OpenAI
+Vercel
+Nvidia
+Tesla
+Notion
+Microsoft AI
+
+It must feel futuristic, premium, elegant, minimal and highly interactive.
+
+This should not look like a normal IT company website.
+
+I want visitors to feel:
+
+"Wow...this company is building the future."
+
+---
+
+## IMPORTANT
+
+Use the attached Pitch Deck as the primary source of company information.
+
+Extract all useful content, rewrite it professionally and naturally for a website instead of copying slide text.
+
+Expand every section into detailed website content.
+
+Do not create a landing page.
+
+Create a complete corporate website with rich storytelling.
+
+---
+
+## Website Goal
+
+Generate leads
+
+Build trust
+
+Show our expertise
+
+Show premium branding
+
+Present our AI products
+
+Present our development services
+
+Present our company vision
+
+Present our founder
+
+Show our team
+
+Increase conversion rate
+
+Drive consultation bookings
+
+---
+
+# Technology
+
+React
+
+Next.js
+
+Tailwind CSS
+
+Framer Motion
+
+GSAP
+
+Three.js
+
+Lenis Smooth Scroll
+
+Lottie Animations
+
+Spline (if required)
+
+Canvas
+
+SVG animations
+
+WebGL where needed
+
+Use latest UI practices.
+
+Website must achieve
+
+100/100 Lighthouse
+
+SEO optimized
+
+Fast loading
+
+Responsive
+
+Accessibility friendly
+
+Production Ready
+
+---
+
+# Website Theme
+
+Dark Premium
+
+Black
+
+Deep Navy
+
+Glass Morphism
+
+Soft Orange Accent
+
+Electric Blue Accent
+
+Gradient Lights
+
+Floating Cards
+
+Blur Background
+
+Aurora Effect
+
+Neon Glow
+
+Animated Particles
+
+Gradient Mesh
+
+Noise Texture
+
+---
+
+# Typography
+
+Large bold headlines
+
+Modern typography
+
+Smooth letter spacing
+
+Premium spacing
+
+Scrolling typography animations
+
+Split text animations
+
+Word reveal animations
+
+Character reveal animations
+
+---
+
+# Hero Section
+
+This should become one of the best hero sections on the internet.
+
+Include
+
+Animated background
+
+AI Neural Network
+
+Floating glowing particles
+
+Moving lines
+
+Animated data flow
+
+AI nodes
+
+Digital globe
+
+Circuit animation
+
+Mouse reactive lighting
+
+Cursor glow
+
+Magnetic buttons
+
+Animated gradient
+
+Background video overlay
+
+Floating glass cards
+
+Rotating AI icons
+
+Use my founder video in the hero section.
+
+The video should autoplay silently with elegant borders.
+
+Hero headline should animate word by word.
+
+CTA Buttons
+
+Book Free Consultation
+
+View Portfolio
+
+Watch Company Story
+
+---
+
+# Scrolling Experience
+
+Entire website should feel alive.
+
+As users scroll
+
+Objects move
+
+Cards rotate
+
+Text fades
+
+Sections slide
+
+Background changes
+
+Gradient morphs
+
+Images zoom
+
+Icons animate
+
+3D objects rotate
+
+Numbers count
+
+Lines draw
+
+Progress bars animate
+
+Parallax everywhere
+
+---
+
+# Special GIF Requirement
+
+Create one custom animated GIF or animated visual sequence for the website.
+
+It should be one of the strongest visual elements.
+
+Idea
+
+Imagine a futuristic AI control room.
+
+Business icons
+
+AI robots
+
+Cloud
+
+Database
+
+CRM
+
+ERP
+
+Apps
+
+Analytics
+
+POS
+
+Invoices
+
+AI Chatbot
+
+Automation
+
+Marketing
+
+Inventory
+
+Restaurant
+
+Finance
+
+All connected through glowing digital lines.
+
+While scrolling
+
+The ecosystem should assemble itself.
+
+Every module connects together.
+
+Finally
+
+The logo of Avdar Innovations appears.
+
+This should become the signature animation of our website.
+
+---
+
+# Navigation
+
+Sticky
+
+Transparent
+
+Glass Effect
+
+Animated
+
+Hide on scroll down
+
+Show on scroll up
+
+Mega Menu
+
+Smooth transitions
+
+---
+
+# Sections
+
+## Hero
+
+---
+
+## About Company
+
+Long storytelling.
+
+Who we are
+
+Why we started
+
+Our vision
+
+Our mission
+
+Company philosophy
+
+Future roadmap
+
+Innovation mindset
+
+Culture
+
+Leadership
+
+---
+
+## Founder Section
+
+Adarsh Deep Sachan
+
+Large portrait
+
+Founder story
+
+Timeline
+
+Journey
+
+Vision
+
+Experience
+
+Leadership
+
+Animated timeline
+
+Video message
+
+Achievements
+
+---
+
+## Company Vision
+
+Use ideas from the pitch deck.
+
+Explain
+
+AI Business Operating System
+
+AI SaaS Ecosystem
+
+Future of SMEs
+
+Digital India
+
+Global Expansion
+
+Expand into multiple paragraphs. 
+
+---
+
+## Why Choose Us
+
+Animated comparison cards
+
+Modern icons
+
+Statistics
+
+Premium animations
+
+---
+
+## Our Services
+
+Very detailed.
+
+Each service should have
+
+Description
+
+Benefits
+
+Technologies
+
+Industries
+
+CTA
+
+Services include
+
+AI Development
+
+Website Development
+
+Web Applications
+
+Android Apps
+
+iOS Apps
+
+Flutter Apps
+
+React Apps
+
+Node Backend
+
+ERP
+
+CRM
+
+POS
+
+Hospital Software
+
+Restaurant Software
+
+Education LMS
+
+Marketplace
+
+Taxi Apps
+
+Delivery Apps
+
+Inventory
+
+Billing
+
+AI Chatbots
+
+Generative AI
+
+Automation
+
+Cloud
+
+DevOps
+
+UI UX
+
+SEO
+
+Digital Marketing
+
+Branding
+
+Video Production
+
+Graphic Design
+
+Influencer Marketing
+
+Enterprise Software
+
+Custom Software
+
+API Integration
+
+Payment Gateway
+
+IoT
+
+Blockchain
+
+---
+
+## AI Products
+
+Use the Pitch Deck
+
+Expand
+
+AI Social Media Automation
+
+AI Accounting
+
+AI Restaurant POS
+
+Explain features
+
+Benefits
+
+Future vision
+
+Pricing cards
+
+Animated dashboard mockups
+
+Interactive UI
+
+Product demos
+
+Use information from the pitch deck but expand significantly. 
+
+---
+
+## Our Process
+
+Discovery
+
+Planning
+
+Research
+
+Wireframe
+
+UI
+
+Development
+
+Testing
+
+Deployment
+
+Support
+
+Animated workflow
+
+---
+
+## Technologies
+
+React
+
+Next
+
+Flutter
+
+Node
+
+Laravel
+
+MongoDB
+
+Firebase
+
+AWS
+
+Azure
+
+Docker
+
+Kubernetes
+
+OpenAI
+
+Claude
+
+Gemini
+
+DeepSeek
+
+Python
+
+AI
+
+TensorFlow
+
+LangChain
+
+More...
+
+Animated icons
+
+---
+
+## Portfolio
+
+Show many projects.
+
+Categories
+
+Healthcare
+
+Education
+
+Food Delivery
+
+Taxi
+
+Laundry
+
+Restaurant
+
+CRM
+
+ERP
+
+AI
+
+Marketplace
+
+Finance
+
+Real Estate
+
+Ecommerce
+
+Inventory
+
+Government
+
+Manufacturing
+
+Each project
+
+Large image
+
+Animation
+
+Case Study
+
+Tech Stack
+
+Problem
+
+Solution
+
+Outcome
+
+---
+
+## Industries
+
+Cards
+
+Healthcare
+
+Education
+
+Retail
+
+Manufacturing
+
+Finance
+
+Restaurants
+
+Automobile
+
+Travel
+
+Real Estate
+
+Construction
+
+Agriculture
+
+Government
+
+Hospitality
+
+Beauty
+
+Fitness
+
+More
+
+---
+
+## Team Section
+
+Animated team cards
+
+Glass UI
+
+Hover effects
+
+Roles
+
+Developers
+
+Designers
+
+AI Engineers
+
+Project Managers
+
+QA
+
+DevOps
+
+Marketing
+
+Sales
+
+HR
+
+Business Analysts
+
+Founder
+
+---
+
+## Company Numbers
+
+Animated counters
+
+Projects
+
+Happy Clients
+
+Countries
+
+Developers
+
+Years Experience
+
+Awards
+
+Support
+
+App Downloads
+
+Users
+
+---
+
+## Client Reviews
+
+Video reviews
+
+Cards
+
+Infinite slider
+
+Glass design
+
+---
+
+## Awards
+
+Certificates
+
+Recognition
+
+Timeline
+
+---
+
+## Blog
+
+AI
+
+Technology
+
+Business
+
+Innovation
+
+Automation
+
+---
+
+## Careers
+
+Join Team
+
+Culture
+
+Benefits
+
+Jobs
+
+---
+
+## FAQ
+
+Animated accordion
+
+---
+
+## Contact
+
+Interactive map
+
+Appointment booking
+
+Calendar
+
+Forms
+
+WhatsApp
+
+Email
+
+Phone
+
+Social
+
+---
+
+# Micro Animations
+
+Every button
+
+Hover glow
+
+Scale
+
+Magnetic
+
+Ripple
+
+Border animation
+
+Mouse tracking
+
+Card floating
+
+3D tilt
+
+Gradient borders
+
+Cursor effects
+
+---
+
+# Background Animation
+
+Throughout website
+
+Floating particles
+
+Digital rain
+
+AI neural lines
+
+Glowing circles
+
+Wave mesh
+
+Animated blobs
+
+Gradient flow
+
+---
+
+# Footer
+
+Huge premium footer
+
+Multiple columns
+
+Newsletter
+
+Company
+
+Products
+
+Resources
+
+Contact
+
+Social
+
+CTA
+
+---
+
+# SEO
+
+Generate
+
+Meta Tags
+
+Schema
+
+OpenGraph
+
+Twitter Cards
+
+Sitemap
+
+Robots
+
+Dynamic metadata
+
+---
+
+# Performance
+
+Lazy Loading
+
+Image Optimization
+
+Code Splitting
+
+Prefetch
+
+SSR
+
+Static Generation
+
+---
+
+# Final Deliverable
+
+Create the complete production-ready website.
+
+Every page should be premium.
+
+Every section should have rich animations.
+
+Every component should feel handcrafted.
+
+No placeholders.
+
+No lorem ipsum.
+
+Generate detailed original content.
+
+Expand company information professionally.
+
+Use premium stock illustrations, AI illustrations, animated SVGs, Lottie files, and interactive 3D visuals where appropriate.
+
+The website should look like a company valued at over $100 million, capable of competing visually with OpenAI, Vercel, Stripe, and Apple.
+
+Use the uploaded pitch deck as the source of truth for company vision, mission, AI ecosystem, products, and founder details, while expanding it into comprehensive website content. 
+
+---
+
+### Additional Creative Direction
+
+* Add smooth page transitions using Framer Motion.
+* Use GSAP ScrollTrigger for cinematic scroll reveals.
+* Add an interactive 3D globe highlighting global client reach.
+* Include a "Technology Ecosystem" section where service icons connect with animated glowing lines.
+* Create an "Innovation Lab" section showcasing AI experiments, automation demos, and future products.
+* Add an immersive "Our Impact" section with animated statistics, client success stories, and before/after transformations.
+* Design custom SVG illustrations instead of generic icons wherever possible.
+* Ensure every section has its own distinct animation style while maintaining a consistent visual language across the site.
