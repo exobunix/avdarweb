@@ -55,11 +55,12 @@ export function Footer() {
           
           {/* Brand Col */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-block relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-white/10 via-white/20 to-white/10 dark:bg-gradient-to-r dark:from-white/15 dark:via-white/25 dark:to-white/15 rounded-2xl blur-md opacity-80 dark:opacity-100 transition-opacity duration-300" />
               <img 
                 src={logoUrl} 
                 alt={settings?.siteName || "Avdar Innovations"} 
-                className="h-28 w-auto md:h-32 object-contain hover:opacity-80 transition-opacity"
+                className="h-28 w-auto md:h-32 object-contain hover:opacity-80 transition-opacity relative z-10"
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

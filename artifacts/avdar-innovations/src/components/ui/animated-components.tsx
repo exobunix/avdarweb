@@ -99,11 +99,11 @@ export function GlowingButton({
   
   let styles = "";
   if (variant === "primary") {
-    styles = "bg-white text-background hover:bg-white/90";
+    styles = "bg-foreground text-background hover:bg-foreground/90";
   } else if (variant === "secondary") {
-    styles = "bg-primary text-white hover:bg-primary/90 glow-blue";
+    styles = "bg-primary text-primary-foreground hover:bg-primary/90 glow-blue";
   } else {
-    styles = "border border-white/20 text-white hover:bg-white/5";
+    styles = "border border-foreground/20 text-foreground hover:bg-foreground/5";
   }
 
   const Inner = () => (

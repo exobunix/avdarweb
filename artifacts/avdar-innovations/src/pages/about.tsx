@@ -26,18 +26,37 @@ export default function About() {
       <section className="py-24 md:py-32 relative overflow-hidden">
         <div className="absolute right-0 top-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="container mx-auto px-6 relative z-10">
-          <AnimatedText 
-            text={heroBlock.title}
-            className="text-5xl md:text-7xl font-display font-bold leading-tight mb-8 max-w-4xl text-foreground"
-          />
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-xl text-muted-foreground max-w-2xl leading-relaxed"
-          >
-            {heroBlock.subtitle}
-          </motion.p>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <AnimatedText 
+                text={heroBlock.title}
+                className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-8 text-foreground"
+              />
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-xl text-muted-foreground leading-relaxed"
+              >
+                {heroBlock.subtitle}
+              </motion.p>
+            </div>
+            <div className="lg:col-span-5">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="relative aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-border shadow-2xl"
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent z-10" />
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000" 
+                  alt="Avdar Innovations Team" 
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
