@@ -1,16 +1,25 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import pg from "pg";
-import * as schema from "./schema";
+import mongoose from "mongoose";
+import dns from "dns";
 
-const { Pool } = pg;
-
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
+dns.setDefaultResultOrder("ipv4first");
+try {
+  dns.setServers(["8.8.8.8", "8.8.4.4"]);
+} catch (e) {
+  console.warn("Could not set custom DNS servers:", e);
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle(pool, { schema });
+export async function connectDb(uri?: string) {
+  const mongoUri = uri || process.env.MONGODB_URI;
+  if (!mongoUri) {
+    throw new Error("MONGODB_URI environment variable is required.");
+  }
+  if (mongoose.connection.readyState === 0) {
+    await mongoose.connect(mongoUri);
+  }
+}
+
+export const db = mongoose.connection;
 
 export * from "./schema";
+export * from "./schema/models";
+export * from "./schema/counter";
