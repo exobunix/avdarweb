@@ -59,7 +59,7 @@ export function Footer() {
               <img 
                 src={logoUrl} 
                 alt={settings?.siteName || "Avdar Innovations"} 
-                className="h-20 w-auto hover:opacity-80 transition-opacity"
+                className="h-28 w-auto md:h-32 object-contain hover:opacity-80 transition-opacity"
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

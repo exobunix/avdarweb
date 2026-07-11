@@ -69,7 +69,7 @@ export function Navbar() {
               <img 
                 src={logoUrl} 
                 alt={settings?.siteName || "Avdar Innovations Logo"} 
-                className="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity" 
+                className="h-20 w-auto md:h-24 object-contain group-hover:opacity-80 transition-opacity" 
               />
             </Link>
 

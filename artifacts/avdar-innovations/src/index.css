@@ -169,6 +169,10 @@ html {
 }
 
 .text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-neutral-800 to-neutral-500;
+}
+
+.dark .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/50;
 }
 
