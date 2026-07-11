@@ -8,9 +8,19 @@ import {
   Cloud, LineChart, ShoppingCart, Video, ArrowRight,
   Code, AppWindow, Cpu, CreditCard, Wifi, Link2, MonitorPlay
 } from "lucide-react";
+import { useListPageContent, useListServices } from "@workspace/api-client-react";
+import { getBlockValue } from "@/lib/cms";
 
 export default function Services() {
-  const categories = [
+  const { data: pageBlocks } = useListPageContent("services");
+  const { data: dbServices } = useListServices();
+
+  const heroBlock = getBlockValue(pageBlocks, "hero", {
+    title: "Our Expertise.",
+    description: "A comprehensive suite of 30+ specialized digital services. From foundational engineering and bespoke enterprise architecture to advanced artificial intelligence and cloud infrastructure."
+  });
+
+  const staticCategories = [
     {
       title: "Core Development",
       services: [
@@ -68,24 +78,38 @@ export default function Services() {
     }
   ];
 
+  // Include custom database services if present
+  const categories = [...staticCategories];
+  if (dbServices && dbServices.length > 0) {
+    categories.unshift({
+      title: "Featured Bespoke Services",
+      services: dbServices.map((s) => ({
+        icon: Cpu,
+        name: s.title,
+        desc: s.description,
+        tech: "Enterprise Standard"
+      }))
+    });
+  }
+
   return (
     <PageLayout>
       <section className="py-24 relative">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mb-20">
             <AnimatedText 
-              text="Our Expertise."
-              className="text-5xl md:text-7xl font-display font-bold mb-6"
+              text={heroBlock.title}
+              className="text-5xl md:text-7xl font-display font-bold mb-6 text-foreground"
             />
             <p className="text-xl text-muted-foreground">
-              A comprehensive suite of 30+ specialized digital services. From foundational engineering and bespoke enterprise architecture to advanced artificial intelligence and cloud infrastructure.
+              {heroBlock.description}
             </p>
           </div>
 
           <div className="space-y-32">
             {categories.map((category, catIndex) => (
               <div key={catIndex} className="relative">
-                <h2 className="text-3xl font-display font-bold text-white mb-12 flex items-center gap-4">
+                <h2 className="text-3xl font-display font-bold text-foreground mb-12 flex items-center gap-4">
                   <span className="w-12 h-px bg-primary hidden md:block" />
                   {category.title}
                 </h2>
@@ -93,16 +117,16 @@ export default function Services() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                   {category.services.map((service, i) => (
                     <FadeIn key={i} delay={i * 0.1}>
-                      <GlassCard className="flex flex-col h-full hover:bg-white/[0.08] hover:border-primary/30 transition-all duration-300">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-orange-500/20 flex items-center justify-center text-white mb-6 border border-white/5 group-hover:scale-110 transition-transform duration-300">
+                      <GlassCard className="flex flex-col h-full hover:bg-white/[0.08] hover:border-primary/30 transition-all duration-300 border border-border">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-orange-500/20 flex items-center justify-center text-foreground mb-6 border border-border group-hover:scale-110 transition-transform duration-300">
                           <service.icon className="w-6 h-6 group-hover:text-primary transition-colors" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{service.name}</h3>
+                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{service.name}</h3>
                         <p className="text-muted-foreground text-sm flex-grow mb-6 leading-relaxed">{service.desc}</p>
                         
-                        <div className="pt-6 border-t border-white/10 mt-auto flex items-center justify-between">
-                          <span className="text-xs font-mono text-white/50">{service.tech}</span>
-                          <Link href="/contact" className="text-primary hover:text-white transition-colors">
+                        <div className="pt-6 border-t border-border mt-auto flex items-center justify-between">
+                          <span className="text-xs font-mono text-muted-foreground">{service.tech}</span>
+                          <Link href="/contact" className="text-primary hover:text-foreground transition-colors">
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </Link>
                         </div>

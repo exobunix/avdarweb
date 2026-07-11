@@ -1,107 +1,99 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { AnimatedText, GlassCard, FadeIn } from "@/components/ui/animated-components";
 import { Link } from "wouter";
-import { ArrowRight, Calendar, Tag } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
+import { useListBlogPosts } from "@workspace/api-client-react";
 
 export const dummyPosts = [
   {
     slug: "future-of-sme-automation",
     title: "Why SMEs Must Automate or Die in the Next 5 Years",
     excerpt: "The gap between enterprises and SMEs used to be capital. Today, it's automation. Learn how generative AI levels the playing field and makes efficiency accessible.",
-    date: "Oct 12, 2023",
+    publishedAt: "2023-10-12T00:00:00.000Z",
     category: "AI & Automation",
-    readTime: "5 min read"
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
   },
   {
     slug: "custom-erp-vs-saas",
     title: "The Hidden Costs of Off-the-Shelf SaaS Platforms",
     excerpt: "Why scaling businesses eventually hit a wall with generic software, and the profound long-term ROI of building custom enterprise architecture.",
-    date: "Sep 28, 2023",
+    publishedAt: "2023-09-28T00:00:00.000Z",
     category: "Engineering",
-    readTime: "7 min read"
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015"
   },
   {
     slug: "generative-ai-in-healthcare",
     title: "Predictive Healthcare: How AI is Changing Patient Management",
     excerpt: "From automated triage to predictive resource allocation, we explore the software infrastructure powering modern hospitals and reducing physician burnout.",
-    date: "Sep 15, 2023",
+    publishedAt: "2023-09-15T00:00:00.000Z",
     category: "Industry Insights",
-    readTime: "6 min read"
-  },
-  {
-    slug: "react-vs-flutter-enterprise",
-    title: "React Native vs Flutter: The Enterprise Perspective",
-    excerpt: "When to choose which cross-platform framework. We break down performance, developer velocity, and maintainability for large-scale mobile applications.",
-    date: "Aug 30, 2023",
-    category: "Tech Stack",
-    readTime: "8 min read"
-  },
-  {
-    slug: "securing-the-modern-api",
-    title: "Zero Trust Architecture: Securing the Modern API",
-    excerpt: "As cyber threats evolve, perimeter defense is dead. How to implement zero-trust principles in your Node.js and microservice architectures.",
-    date: "Aug 12, 2023",
-    category: "Security",
-    readTime: "6 min read"
-  },
-  {
-    slug: "the-death-of-the-spreadsheet",
-    title: "The Death of the Spreadsheet: Why Internal Tools Matter",
-    excerpt: "If your operations run on massive Excel files, you are losing money. The case for bespoke internal dashboards and CRM tools.",
-    date: "Jul 25, 2023",
-    category: "Digital Transformation",
-    readTime: "5 min read"
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070"
   }
 ];
 
 export default function Blog() {
+  const { data: dbBlogs } = useListBlogPosts();
+
+  const posts = (dbBlogs && dbBlogs.length > 0 ? dbBlogs : dummyPosts) as any[];
+
+  const formatDate = (dateStr: string) => {
+    try {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    } catch {
+      return "Oct 12, 2023";
+    }
+  };
+
   return (
     <PageLayout>
       <section className="py-24 relative">
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl mb-20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mb-20">
             <AnimatedText 
-              text="Insights & Engineering."
-              className="text-5xl md:text-7xl font-display font-bold mb-6"
+              text="The Journal."
+              className="text-5xl md:text-7xl font-display font-bold mb-6 text-foreground"
             />
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Deep dives into software architecture, artificial intelligence, and the digital transformation of modern business. Written by our senior engineering and product teams.
+            <p className="text-xl text-muted-foreground">
+              Deep dives into AI engineering, software architecture, and the mechanics of modern digital transformation.
             </p>
           </div>
 
-          <div className="grid gap-8 max-w-4xl mx-auto">
-            {dummyPosts.map((post, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post, i) => (
               <FadeIn key={post.slug} delay={i * 0.1}>
-                <Link href={`/blog/${post.slug}`}>
-                  <GlassCard className="cursor-pointer group flex flex-col sm:flex-row gap-8 sm:items-center justify-between hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300">
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground mb-4">
-                        <span className="flex items-center gap-1 text-primary bg-primary/10 px-2 py-1 rounded">
-                          <Tag className="w-3 h-3" /> {post.category}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" /> {post.date}
-                        </span>
-                        <span>•</span>
-                        <span>{post.readTime}</span>
-                      </div>
-                      <h2 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">{post.title}</h2>
-                      <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
+                <GlassCard className="flex flex-col h-full overflow-hidden group hover:border-primary/30 transition-all duration-300 border border-border p-0">
+                  <div className="aspect-video relative overflow-hidden bg-muted border-b border-border">
+                    <img 
+                      src={post.image || "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4 font-mono">
+                      <span className="text-primary font-semibold uppercase">{post.category}</span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {formatDate(post.publishedAt || post.createdAt)}
+                      </span>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all text-white/50 group-hover:scale-110">
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </GlassCard>
-                </Link>
+
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-foreground mt-auto transition-colors group/link">
+                      Read Article <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </GlassCard>
               </FadeIn>
             ))}
-          </div>
-          
-          <div className="mt-16 text-center">
-            <button className="px-8 py-3 rounded-full border border-white/20 text-white/80 hover:bg-white/5 hover:text-white transition-colors text-sm font-medium">
-              Load More Articles
-            </button>
           </div>
         </div>
       </section>

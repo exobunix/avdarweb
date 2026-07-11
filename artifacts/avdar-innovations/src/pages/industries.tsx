@@ -5,11 +5,21 @@ import {
   HeartPulse, GraduationCap, ShoppingBag, Factory, 
   Landmark, Utensils, Car, Plane, Home, HardHat, 
   Tractor, Building2, Coffee, Sparkles, Dumbbell,
-  ShieldCheck
+  ShieldCheck, HelpCircle
 } from "lucide-react";
+import { useListPageContent, useListIndustries } from "@workspace/api-client-react";
+import { getBlockValue } from "@/lib/cms";
 
 export default function Industries() {
-  const industries = [
+  const { data: pageBlocks } = useListPageContent("industries");
+  const { data: dbIndustries } = useListIndustries();
+
+  const heroBlock = getBlockValue(pageBlocks, "hero", {
+    title: "Industries We Empower.",
+    description: "Software is not one-size-fits-all. We build vertically integrated solutions that understand the specific language, regulations, and operational challenges of your industry."
+  });
+
+  const staticIndustries = [
     { name: "Healthcare", icon: HeartPulse, desc: "HIPAA-compliant telemedicine apps, EHR integrations, patient portals, and AI-driven appointment scheduling that reduces no-shows and optimizes clinic flow." },
     { name: "Education", icon: GraduationCap, desc: "Highly scalable LMS platforms, virtual classrooms with WebRTC, automated grading systems, and student administration portals built for high concurrent traffic." },
     { name: "Retail & Ecommerce", icon: ShoppingBag, desc: "Multi-vendor marketplaces, high-conversion headless commerce storefronts, and predictive inventory systems that prevent stockouts during peak sales." },
@@ -28,6 +38,20 @@ export default function Industries() {
     { name: "Insurance", icon: ShieldCheck, desc: "Automated claims processing platforms, AI-driven risk assessment models, and streamlined broker administration dashboards." }
   ];
 
+  // Merge custom database industries
+  const industries = [...staticIndustries];
+  if (dbIndustries && dbIndustries.length > 0) {
+    dbIndustries.forEach((ind) => {
+      if (!industries.some((s) => s.name.toLowerCase() === ind.title.toLowerCase())) {
+        industries.unshift({
+          name: ind.title,
+          icon: HelpCircle,
+          desc: ind.description
+        });
+      }
+    });
+  }
+
   return (
     <PageLayout>
       <section className="py-24 relative overflow-hidden">
@@ -37,22 +61,22 @@ export default function Industries() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <AnimatedText 
-              text="Industries We Empower."
-              className="text-5xl md:text-7xl font-display font-bold mb-6"
+              text={heroBlock.title}
+              className="text-5xl md:text-7xl font-display font-bold mb-6 text-foreground"
             />
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Software is not one-size-fits-all. We build vertically integrated solutions that understand the specific language, regulations, and operational challenges of your industry.
+              {heroBlock.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {industries.map((ind, i) => (
               <FadeIn key={ind.name} delay={(i % 4) * 0.1}>
-                <GlassCard className="h-full flex flex-col group hover:bg-white/[0.08] hover:border-primary/30 transition-all duration-300 cursor-default">
+                <GlassCard className="h-full flex flex-col group hover:bg-white/[0.08] hover:border-primary/30 transition-all duration-300 cursor-default border border-border">
                   <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_rgba(2,132,199,0.3)]">
-                    <ind.icon className="w-6 h-6 text-white group-hover:text-primary transition-colors duration-500" />
+                    <ind.icon className="w-6 h-6 text-foreground group-hover:text-primary transition-colors duration-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{ind.name}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{ind.name}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{ind.desc}</p>
                 </GlassCard>
               </FadeIn>

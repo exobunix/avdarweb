@@ -1,8 +1,19 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { GlassCard, FadeIn } from "@/components/ui/animated-components";
 import { motion } from "framer-motion";
+import { useListPageContent } from "@workspace/api-client-react";
+import { getBlockValue } from "@/lib/cms";
 
 export default function Founder() {
+  const { data: pageBlocks } = useListPageContent("founder");
+
+  const visionBlock = getBlockValue(pageBlocks, "vision", {
+    title: "The Visionary Mindset",
+    p1: "Adarsh Deep Sachan built Avdar Innovations on a foundation of relentless curiosity and technical excellence. Watching businesses struggle with fragmented software, expensive legacy systems, and manual processes, he envisioned a unified ecosystem where artificial intelligence doesn't just augment software—it drives it.",
+    p2: "His engineering philosophy rejects bloat. He believes enterprise software should mirror the elegance and speed of consumer products, demanding pixel-perfect UI and scalable, robust backends. A strong advocate for open-source technologies, Adarsh constantly experiments with the bleeding edge of web frameworks to bring maximum performance to clients.",
+    p3: "Under his leadership, Avdar Innovations is not just another IT service provider; it is an incubator for the future of business operations, pushing the boundaries of what's possible in India's digital landscape and exporting that innovation globally."
+  });
+
   const timeline = [
     { year: "2016", title: "The First Lines of Code", desc: "Started as a passionate self-taught developer, exploring the depths of algorithms, web security, and low-level system architecture." },
     { year: "2018", title: "Early Origins", desc: "Began journey as an independent full-stack developer, mastering web architecture, cloud deployment, and mobile ecosystems. Delivered early projects for local startups." },
@@ -23,7 +34,7 @@ export default function Founder() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              className="w-full lg:w-1/2 aspect-[4/5] rounded-3xl relative overflow-hidden shadow-2xl"
+              className="w-full lg:w-1/2 aspect-[4/5] rounded-3xl relative overflow-hidden shadow-2xl border border-border"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-background via-blue-900/40 to-orange-500/30 z-10" />
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center mix-blend-luminosity opacity-50 hover:scale-105 transition-transform duration-1000" />
@@ -41,42 +52,35 @@ export default function Founder() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gradient">The Visionary Mindset</h2>
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gradient">{visionBlock.title}</h2>
                 <div className="space-y-6 text-muted-foreground text-lg leading-relaxed mb-16">
-                  <p>
-                    Adarsh Deep Sachan built Avdar Innovations on a foundation of relentless curiosity and technical excellence. Watching businesses struggle with fragmented software, expensive legacy systems, and manual processes, he envisioned a unified ecosystem where artificial intelligence doesn't just augment software—it drives it.
-                  </p>
-                  <p>
-                    His engineering philosophy rejects bloat. He believes enterprise software should mirror the elegance and speed of consumer products, demanding pixel-perfect UI and scalable, robust backends. A strong advocate for open-source technologies, Adarsh constantly experiments with the bleeding edge of web frameworks to bring maximum performance to clients.
-                  </p>
-                  <p>
-                    Under his leadership, Avdar Innovations is not just another IT service provider; it is an incubator for the future of business operations, pushing the boundaries of what's possible in India's digital landscape and exporting that innovation globally.
-                  </p>
+                  <p>{visionBlock.p1}</p>
+                  <p>{visionBlock.p2}</p>
+                  <p>{visionBlock.p3}</p>
                 </div>
               </motion.div>
 
-              <h3 className="text-3xl font-display font-bold mb-10 text-white">The Journey</h3>
+              <h3 className="text-3xl font-display font-bold mb-10 text-foreground">The Journey</h3>
               <div className="space-y-8 relative before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-px before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
                 {timeline.map((item, i) => (
-                  <FadeIn 
-                    key={i}
-                    direction={i % 2 === 0 ? "right" : "left"}
-                    delay={i * 0.1}
-                    className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
-                  >
-                    <div className="flex items-center justify-center w-6 h-6 rounded-full border border-white/20 bg-background text-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:border-primary group-hover:scale-125 transition-all">
-                      <div className="w-2 h-2 bg-primary rounded-full group-hover:shadow-[0_0_10px_#0284c7] transition-shadow" />
-                    </div>
-                    
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl glass-panel relative group-hover:border-white/30 transition-colors">
-                      <span className="text-sm font-mono text-orange-400 mb-2 block">{item.year}</span>
-                      <h4 className="text-xl font-bold text-white mb-3">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                  <FadeIn key={i} delay={i * 0.1}>
+                    <div className="relative flex flex-col md:flex-row gap-6 md:gap-12 pl-8 md:pl-0">
+                      <div className="relative z-10 w-6 h-6 rounded-full bg-background border-4 border-primary flex-shrink-0" />
+                      <div className="md:w-1/5 md:text-right font-mono text-primary font-bold text-lg pt-0.5">
+                        {item.year}
+                      </div>
+                      <div className="md:w-4/5">
+                        <GlassCard className="p-6 border border-border">
+                          <h4 className="text-xl font-bold text-foreground mb-2">{item.title}</h4>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                        </GlassCard>
+                      </div>
                     </div>
                   </FadeIn>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>

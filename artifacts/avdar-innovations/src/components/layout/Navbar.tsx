@@ -1,14 +1,19 @@
 import { Link, useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
-import avdarLogo from "@/assets/avdar-logo.png";
+import { Menu, X, ChevronRight, Sun, Moon } from "lucide-react";
+import { useGetSiteSettings, useListNavLinks } from "@workspace/api-client-react";
+import { useTheme } from "@/hooks/useTheme";
 
 export function Navbar() {
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { mode, toggle } = useTheme();
+  const { data: settings } = useGetSiteSettings();
+  const { data: navLinks } = useListNavLinks();
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -29,13 +34,20 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  const defaultNavLinks = [
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
     { href: "/products", label: "Products" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/industries", label: "Industries" },
+    { href: "/blog", label: "Blog" },
   ];
+
+  const displayLinks = navLinks && navLinks.length > 0
+    ? [...navLinks].sort((a, b) => a.order - b.order)
+    : defaultNavLinks;
+
+  const logoUrl = settings?.logoUrl || "https://ik.imagekit.io/smcdngw8m/avdarweb/avdar-logo_-e85m7WOi.png";
 
   return (
     <>
@@ -55,19 +67,19 @@ export function Navbar() {
           }`}>
             <Link href="/" className="flex items-center gap-3 group z-50">
               <img 
-                src={avdarLogo} 
-                alt="Avdar Innovations Logo" 
+                src={logoUrl} 
+                alt={settings?.siteName || "Avdar Innovations Logo"} 
                 className="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity" 
               />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
+              {displayLinks.map((link) => (
                 <Link 
                   key={link.href} 
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-white ${
-                    location === link.href ? "text-white" : "text-white/60"
+                  className={`text-sm font-medium transition-colors hover:text-foreground ${
+                    location === link.href ? "text-foreground font-semibold" : "text-foreground/60"
                   }`}
                 >
                   {link.label}
@@ -76,6 +88,15 @@ export function Navbar() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-4">
+              {/* Theme Mode Toggle */}
+              <button
+                onClick={toggle}
+                className="p-2 rounded-full border border-border bg-card/50 text-foreground hover:bg-muted transition-all duration-300"
+                aria-label="Toggle Dark/Light Mode"
+              >
+                {mode === "dark" ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-blue-500" />}
+              </button>
+
               <Link href="/contact" className="relative group overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-orange-500 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative bg-background/90 backdrop-blur-md px-6 py-2 rounded-full flex items-center gap-2 transition-all duration-300 group-hover:bg-background/50">
@@ -85,12 +106,23 @@ export function Navbar() {
               </Link>
             </div>
 
-            <button 
-              className="lg:hidden text-white z-50 p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X /> : <Menu />}
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              {/* Theme Mode Toggle for Mobile */}
+              <button
+                onClick={toggle}
+                className="p-2 rounded-full border border-border bg-card/50 text-foreground hover:bg-muted transition-all duration-300"
+                aria-label="Toggle Dark/Light Mode"
+              >
+                {mode === "dark" ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-blue-500" />}
+              </button>
+
+              <button 
+                className="text-foreground p-2 z-50"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -104,13 +136,13 @@ export function Navbar() {
             className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-32 px-6 pb-6 flex flex-col"
           >
             <div className="flex flex-col gap-6 text-2xl font-display font-medium">
-              {navLinks.map((link) => (
+              {displayLinks.map((link) => (
                 <Link 
                   key={link.href} 
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`border-b border-white/10 pb-4 ${
-                    location === link.href ? "text-primary" : "text-white/80"
+                  className={`border-b border-border pb-4 hover:text-primary transition-colors ${
+                    location === link.href ? "text-primary font-semibold" : "text-foreground/80"
                   }`}
                 >
                   {link.label}
@@ -119,9 +151,9 @@ export function Navbar() {
               <Link 
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-orange-400 mt-4"
+                className="text-orange-500 mt-4 flex items-center gap-2"
               >
-                Book Consultation
+                Book Consultation <ChevronRight className="w-5 h-5" />
               </Link>
             </div>
           </motion.div>

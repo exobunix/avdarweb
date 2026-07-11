@@ -60,7 +60,7 @@ async function seed() {
     id: 1,
     siteName: "Avdar Innovations",
     tagline: "Engineering the future of enterprise software.",
-    logoUrl: "/assets/avdar-logo.png",
+    logoUrl: "https://ik.imagekit.io/smcdngw8m/avdarweb/avdar-logo_-e85m7WOi.png",
     contactEmail: "contact@avdarinnovations.com",
     contactPhones: ["+91 99678 53364 (WhatsApp)", "+91 97024 97241 (WhatsApp)", "+91 99115 94905 (WhatsApp)"],
     contactAddress: "OC-1125, Gaur City Center, Sector 4, Greater Noida West, 201009, Uttar Pradesh, India",
