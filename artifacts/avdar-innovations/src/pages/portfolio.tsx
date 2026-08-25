@@ -1,10 +1,41 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { AnimatedText, GlassCard, FadeIn } from "@/components/ui/animated-components";
+import { AnimatedText, GlassCard, FadeIn, GlowingButton } from "@/components/ui/animated-components";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
 import { useListPageContent, useListPortfolioProjects } from "@workspace/api-client-react";
 import { getBlockValue } from "@/lib/cms";
+import { useState, useEffect } from "react";
+
+function BackToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > 800);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <motion.button
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.8 }}
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 z-50 p-4 rounded-full bg-primary text-primary-foreground shadow-[0_4px_25px_rgba(2,132,199,0.5)] border border-primary/50 hover:bg-primary/90 transition-all ${
+        visible ? "pointer-events-auto" : "pointer-events-none"
+      }`}
+      aria-label="Back to Top"
+    >
+      <ArrowUpRight className="w-5 h-5 -rotate-45" />
+    </motion.button>
+  );
+}
 
 export default function Portfolio() {
   const { data: pageBlocks } = useListPageContent("portfolio");
@@ -91,9 +122,67 @@ export default function Portfolio() {
     });
   }
 
+  const [selectedFilter, setSelectedFilter] = useState("All");
+  const filterTags = ["All", "Mobile Apps", "SaaS & CRM", "Web Platforms", "IoT & Custom"];
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedFilter === "All") return true;
+    
+    const categoryLower = project.category.toLowerCase();
+    const techLower = project.tech.toLowerCase();
+    const titleLower = project.title.toLowerCase();
+    
+    if (selectedFilter === "Mobile Apps") {
+      return (
+        categoryLower.includes("mobile") ||
+        categoryLower.includes("app") ||
+        techLower.includes("react native") ||
+        techLower.includes("flutter") ||
+        techLower.includes("kotlin") ||
+        techLower.includes("swift")
+      );
+    }
+    
+    if (selectedFilter === "SaaS & CRM") {
+      return (
+        categoryLower.includes("crm") ||
+        categoryLower.includes("erp") ||
+        categoryLower.includes("billing") ||
+        categoryLower.includes("pos") ||
+        categoryLower.includes("saas") ||
+        titleLower.includes("crm") ||
+        titleLower.includes("ledger")
+      );
+    }
+    
+    if (selectedFilter === "Web Platforms") {
+      return (
+        categoryLower.includes("platform") ||
+        categoryLower.includes("web") ||
+        techLower.includes("next.js") ||
+        techLower.includes("vue") ||
+        techLower.includes("svelte")
+      );
+    }
+    
+    if (selectedFilter === "IoT & Custom") {
+      return (
+        categoryLower.includes("iot") ||
+        categoryLower.includes("emergency") ||
+        techLower.includes("iot") ||
+        techLower.includes("qr") ||
+        techLower.includes("nfc") ||
+        techLower.includes("hardware") ||
+        techLower.includes("blockchain")
+      );
+    }
+    
+    return true;
+  });
+
   return (
     <PageLayout>
-      <section className="py-24 relative">
+      <section className="py-24 relative overflow-x-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mb-20">
             <AnimatedText 
@@ -105,8 +194,25 @@ export default function Portfolio() {
             </p>
           </div>
 
+          {/* Category Filter Bar */}
+          <div className="flex flex-wrap gap-3 mb-16 border-b border-border pb-8">
+            {filterTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedFilter(tag)}
+                className={`px-5 py-2.5 rounded-full text-xs font-semibold font-mono tracking-wider transition-all duration-300 border ${
+                  selectedFilter === tag
+                    ? "bg-primary text-primary-foreground border-primary shadow-[0_4px_20px_rgba(2,132,199,0.35)]"
+                    : "bg-white/5 text-muted-foreground border-white/10 hover:text-foreground hover:border-foreground/30"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
           <div className="space-y-32">
-            {projects.map((project, i) => (
+            {filteredProjects.map((project, i) => (
               <div 
                 key={project.title}
                 className={`flex flex-col lg:flex-row gap-12 lg:gap-20 ${
@@ -115,51 +221,56 @@ export default function Portfolio() {
               >
                 {/* Visual */}
                 <div className="w-full lg:w-1/2">
-                  <FadeIn delay={0.1} direction={i % 2 === 0 ? "right" : "left"}>
-                    <div className="relative aspect-video rounded-3xl overflow-hidden glass-panel border border-border shadow-2xl group">
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10" />
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute top-6 left-6 z-20">
-                        <span className="px-4 py-2 rounded-full bg-background/90 backdrop-blur-md text-xs font-semibold text-primary border border-border">
-                          {project.category}
-                        </span>
+                  <FadeIn delay={0.1} direction="up">
+                    <Link href="/contact" className="block cursor-pointer">
+                      <div className="relative aspect-video rounded-3xl overflow-hidden glass-panel border border-border shadow-2xl group">
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500 z-10" />
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute top-6 left-6 z-20">
+                          <span className="px-4 py-2 rounded-full bg-background/90 backdrop-blur-md text-xs font-semibold text-primary border border-border">
+                            {project.category}
+                          </span>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </FadeIn>
                 </div>
 
                 {/* Content */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center">
-                  <FadeIn delay={0.2} direction={i % 2 === 0 ? "left" : "right"}>
+                  <FadeIn delay={0.2} direction="up">
                     <div className="flex items-center gap-4 mb-4">
                       <span className="text-sm font-mono text-primary font-semibold">{project.url}</span>
                     </div>
                     
-                    <h3 className="text-3xl font-display font-bold text-foreground mb-6 flex items-center gap-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-
+                    <Link href="/contact" className="group">
+                      <h2 className="text-3xl font-display font-bold text-foreground mb-6 flex items-center gap-2 group-hover:text-primary transition-colors cursor-pointer">
+                        {project.title}
+                      </h2>
+                    </Link>
+                    
                     <div className="space-y-6 mb-8 text-sm">
                       <div>
-                        <h4 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2">The Challenge</h4>
+                        <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-2">The Challenge</h3>
                         <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
                       </div>
                       <div>
-                        <h4 className="font-mono text-xs uppercase tracking-widest text-primary mb-2">Our Solution</h4>
+                        <h3 className="font-mono text-xs uppercase tracking-widest text-primary mb-2">Our Solution</h3>
                         <p className="text-foreground/90 leading-relaxed font-medium">{project.solution}</p>
                       </div>
                     </div>
 
                     <div className="pt-6 border-t border-border flex items-center justify-between">
                       <div>
-                        <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Key Tech</h4>
+                        <h3 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Key Tech</h3>
                         <span className="text-xs font-mono text-foreground/80">{project.tech}</span>
                       </div>
-                      <Link href="/contact" className="w-10 h-10 rounded-full bg-white/5 border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary/50 transition-all">
+                      <Link href="/contact" className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-border text-xs font-semibold text-foreground hover:text-primary hover:border-primary/50 transition-all font-mono">
+                        <span>View Case Study</span>
                         <ArrowUpRight className="w-4 h-4" />
                       </Link>
                     </div>
@@ -170,6 +281,27 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio CTA Section */}
+      <section className="py-24 border-t border-border bg-gradient-to-b from-transparent to-primary/5">
+        <div className="container mx-auto px-6 text-center">
+          <FadeIn>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 text-foreground">
+              Ready to start your project?
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
+              Partner with Avdar Innovations to engineer your next digital leap.
+            </p>
+            <Link href="/contact">
+              <GlowingButton variant="primary" className="text-base px-8 py-4">
+                Book Consultation
+              </GlowingButton>
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+
+      <BackToTopButton />
     </PageLayout>
   );
 }
