@@ -5,8 +5,9 @@ import {
   HeartPulse, GraduationCap, ShoppingBag, Factory, 
   Landmark, Utensils, Car, Plane, Home, HardHat, 
   Tractor, Building2, Coffee, Sparkles, Dumbbell,
-  ShieldCheck, HelpCircle
+  ShieldCheck, HelpCircle, ArrowRight
 } from "lucide-react";
+import { Link } from "wouter";
 import { useListPageContent, useListIndustries } from "@workspace/api-client-react";
 import { getBlockValue } from "@/lib/cms";
 
@@ -76,8 +77,15 @@ export default function Industries() {
                   <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:bg-primary/20 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_rgba(2,132,199,0.3)]">
                     <ind.icon className="w-6 h-6 text-foreground group-hover:text-primary transition-colors duration-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{ind.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{ind.desc}</p>
+                  <h2 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{ind.name}</h2>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow mb-6">{ind.desc}</p>
+                  
+                  <div className="pt-4 border-t border-border mt-auto flex items-center justify-between">
+                    <Link href="/contact" className="text-xs font-semibold text-primary hover:text-foreground transition-all flex items-center gap-1 group/link">
+                      <span>Get Industry Solutions</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </GlassCard>
               </FadeIn>
             ))}

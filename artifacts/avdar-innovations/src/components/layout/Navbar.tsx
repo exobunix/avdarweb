@@ -61,13 +61,12 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-6">
-          <div className={`flex items-center justify-between rounded-2xl transition-all duration-500 border ${
+          <div className={`flex items-center justify-between lg:grid lg:grid-cols-3 lg:items-center rounded-2xl transition-all duration-500 border ${
             scrolled
               ? "bg-background/70 backdrop-blur-2xl border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.35)] px-6 py-2.5"
               : "bg-white/[0.03] backdrop-blur-md border-white/5 px-4 py-1.5"
           }`}>
-            <Link href="/" className="flex items-center gap-3 group z-50 relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-white/15 via-white/30 to-white/15 dark:bg-gradient-to-r dark:from-white/20 dark:via-white/30 dark:to-white/20 rounded-2xl blur-md opacity-80 dark:opacity-100 transition-opacity duration-300" />
+            <Link href="/" className="flex items-center gap-3 group z-50 relative justify-self-start">
               <img 
                 src={logoUrl} 
                 alt={settings?.siteName || "Avdar Innovations Logo"} 
@@ -75,7 +74,7 @@ export function Navbar() {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center justify-center gap-8">
               {displayLinks.map((link) => (
                 <Link 
                   key={link.href} 
@@ -89,7 +88,7 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center justify-end gap-4">
               {/* Theme Mode Toggle */}
               <button
                 onClick={toggle}

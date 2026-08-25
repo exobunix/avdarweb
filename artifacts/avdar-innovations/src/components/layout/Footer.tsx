@@ -51,12 +51,11 @@ export function Footer() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
           
           {/* Brand Col */}
-          <div className="lg:col-span-3 flex flex-col gap-6">
+          <div className="flex flex-col gap-6">
             <Link href="/" className="inline-block relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-white/10 via-white/20 to-white/10 dark:bg-gradient-to-r dark:from-white/15 dark:via-white/25 dark:to-white/15 rounded-2xl blur-md opacity-80 dark:opacity-100 transition-opacity duration-300" />
               <img 
                 src={logoUrl} 
                 alt={settings?.siteName || "Avdar Innovations"} 
@@ -90,7 +89,7 @@ export function Footer() {
           </div>
 
           {/* Links Cols */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <h3 className="font-display font-medium text-foreground">Company</h3>
             <div className="flex flex-col gap-3 text-sm">
               {companyLinks.map((link, idx) => (
@@ -99,7 +98,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <h3 className="font-display font-medium text-foreground">Expertise</h3>
             <div className="flex flex-col gap-3 text-sm">
               {expertiseLinks.map((link, idx) => (
@@ -109,7 +108,7 @@ export function Footer() {
           </div>
 
           {/* Contact Col */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+          <div className="flex flex-col gap-6">
             <h3 className="font-display font-medium text-foreground">Contact</h3>
             <p className="text-sm text-muted-foreground font-medium">Reach out to our team for inquiries or support.</p>
             
