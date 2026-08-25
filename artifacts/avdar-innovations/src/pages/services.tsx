@@ -11,14 +11,14 @@ import {
 import { useListPageContent, useListServices } from "@workspace/api-client-react";
 import { getBlockValue } from "@/lib/cms";
 
-const ICON_MAP: Record<string, React.ComponentType<any>> = {
+const ICON_MAP: Record<string, any> = {
   BrainCircuit, Smartphone, Globe, Database, 
   Layout, Search, Server, ShieldCheck, 
   Cloud, LineChart, ShoppingCart, Video,
   Code, AppWindow, Cpu, CreditCard, Wifi, Link2, MonitorPlay
 };
 
-const SERVICE_DETAILS: Record<string, { icon: React.ComponentType<any>; tech: string }> = {
+const SERVICE_DETAILS: Record<string, { icon: any; tech: string }> = {
   "Website Development": { icon: Globe, tech: "Next.js, Tailwind, Framer" },
   "Web Applications": { icon: AppWindow, tech: "React, Vue, Svelte" },
   "Android Apps": { icon: Smartphone, tech: "Kotlin, Java" },
