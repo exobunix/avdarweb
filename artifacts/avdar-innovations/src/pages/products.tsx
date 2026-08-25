@@ -6,6 +6,159 @@ import { Link } from "wouter";
 import { useListPageContent, useListProducts } from "@workspace/api-client-react";
 import { getBlockValue } from "@/lib/cms";
 
+function ProductMockup({ id }: { id: string }) {
+  if (id === "social-ai") {
+    return (
+      <div className="w-full h-full flex flex-col justify-between p-6 bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 text-left font-sans text-xs">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center font-bold text-[10px] text-white">AI</div>
+            <div>
+              <div className="font-semibold text-white">Social AI Agent</div>
+              <div className="text-[9px] text-white/45">Posting automatically...</div>
+            </div>
+          </div>
+          <span className="px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[9px] font-mono">Active</span>
+        </div>
+
+        {/* Post Preview */}
+        <div className="bg-white/5 rounded-xl p-4 border border-white/5 my-3 flex-grow">
+          <p className="text-white/80 leading-relaxed mb-3">
+            "We've just launched our new automated ledger service. Streamline your accounting operations with zero manual data entry. 💸🚀"
+          </p>
+          <div className="h-24 rounded-lg bg-gradient-to-tr from-blue-500/20 to-purple-500/20 border border-white/5 flex items-center justify-center text-white/50 text-[10px]">
+            Generated Image Preview
+          </div>
+        </div>
+
+        {/* Analytics Summary */}
+        <div className="flex items-center justify-between bg-white/5 rounded-xl p-3 border border-white/5">
+          <div>
+            <div className="text-white/40 text-[9px] uppercase tracking-wider">Est. Reach</div>
+            <div className="text-sm font-bold text-white mt-0.5">+12.4K</div>
+          </div>
+          <div className="flex items-end gap-1 h-6">
+            <div className="w-1.5 h-2 bg-blue-500/40 rounded-sm"></div>
+            <div className="w-1.5 h-4 bg-blue-500/60 rounded-sm"></div>
+            <div className="w-1.5 h-3 bg-blue-500/80 rounded-sm"></div>
+            <div className="w-1.5 h-6 bg-blue-500 rounded-sm"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (id === "auto-ledger") {
+    return (
+      <div className="w-full h-full flex flex-col justify-between p-6 bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 text-left font-sans text-xs">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center font-bold text-[10px] text-white">AL</div>
+            <div>
+              <div className="font-semibold text-white">AutoLedger Audit</div>
+              <div className="text-[9px] text-white/45">Real-time reconciling...</div>
+            </div>
+          </div>
+          <span className="px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-[9px] font-mono">2 Warnings</span>
+        </div>
+
+        {/* Financial Info */}
+        <div className="my-3 flex gap-3">
+          <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex-grow">
+            <div className="text-white/40 text-[9px] uppercase tracking-wider">Cash Inflow</div>
+            <div className="text-sm font-bold text-emerald-400 mt-0.5">$48,290</div>
+          </div>
+          <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex-grow">
+            <div className="text-white/40 text-[9px] uppercase tracking-wider">Cash Outflow</div>
+            <div className="text-sm font-bold text-rose-400 mt-0.5">$12,940</div>
+          </div>
+        </div>
+
+        {/* Transaction ledger list */}
+        <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex-grow flex flex-col gap-2 overflow-hidden justify-center">
+          <div className="flex items-center justify-between border-b border-white/5 pb-1 text-[10px]">
+            <span className="text-white/70">Stripe Transfer</span>
+            <span className="text-emerald-400 font-medium">+$2,400</span>
+          </div>
+          <div className="flex items-center justify-between border-b border-white/5 pb-1 text-[10px]">
+            <span className="text-white/70">AWS Cloud Bill</span>
+            <span className="text-white/40 line-through">-$1,250</span>
+          </div>
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="text-orange-400 font-semibold">Duplicate SaaS Vendor</span>
+            <span className="text-orange-400 font-medium">-$89</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (id === "smart-pos") {
+    return (
+      <div className="w-full h-full flex flex-col justify-between p-6 bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 text-left font-sans text-xs">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center font-bold text-[10px] text-white">SP</div>
+            <div>
+              <div className="font-semibold text-white">SmartPOS Terminal</div>
+              <div className="text-[9px] text-white/45">Uptime 100% (Offline ready)</div>
+            </div>
+          </div>
+          <span className="px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-400 text-[9px] font-mono">Predicted</span>
+        </div>
+
+        {/* POS Grid Preview */}
+        <div className="my-3 grid grid-cols-2 gap-2 flex-grow">
+          <div className="bg-white/5 rounded-xl p-2 border border-white/5 flex flex-col justify-between">
+            <span className="text-white/80 font-medium text-[10px]">Espresso Double</span>
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-teal-400 font-bold">$4.50</span>
+              <span className="text-[8px] bg-white/10 text-white/60 px-1 rounded">x34</span>
+            </div>
+          </div>
+          <div className="bg-white/5 rounded-xl p-2 border border-white/5 flex flex-col justify-between">
+            <span className="text-white/80 font-medium text-[10px]">Croissant Almond</span>
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-teal-400 font-bold">$5.00</span>
+              <span className="text-[8px] bg-amber-500/20 text-amber-400 px-1 rounded">Low Stock</span>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Inventory Prediction Bar */}
+        <div className="bg-teal-500/10 rounded-xl p-3 border border-teal-500/20">
+          <div className="flex justify-between items-center text-[10px] text-teal-300 font-medium mb-1.5">
+            <span>Forecast Demand Spike (Local Event)</span>
+            <span>+45% Coffee</span>
+          </div>
+          <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+            <div className="bg-teal-400 h-full w-[85%]"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback / default mockup for custom products
+  return (
+    <div className="w-full h-full flex flex-col justify-between p-6 bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 text-left font-sans text-xs">
+      <div className="flex items-center gap-2 border-b border-white/5 pb-3">
+        <div className="w-6 h-6 rounded-full bg-rose-500 flex items-center justify-center font-bold text-[10px] text-white">EP</div>
+        <div className="font-semibold text-white">Enterprise Module</div>
+      </div>
+      <div className="flex-grow flex items-center justify-center text-white/30 italic text-center p-4">
+        Custom Interface Design
+      </div>
+      <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-[9px] text-white/50">
+        Engineered to specs. Configured via Admin Console.
+      </div>
+    </div>
+  );
+}
+
 export default function Products() {
   const { data: pageBlocks } = useListPageContent("products");
   const { data: dbProducts } = useListProducts();
@@ -104,30 +257,14 @@ export default function Products() {
           </div>
 
           <div className="space-y-32">
-            {products.map((product, i) => (
+            {products.map((product) => (
               <div 
                 key={product.id}
-                className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${
-                  i % 2 === 0 ? "" : "lg:flex-row-reverse"
-                }`}
+                className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
               >
-                {/* Visual Card */}
-                <div className="w-full lg:w-5/12">
-                  <FadeIn delay={0.1} direction={i % 2 === 0 ? "right" : "left"}>
-                    <div className={`relative aspect-square rounded-3xl bg-gradient-to-br ${product.color} p-1 overflow-hidden shadow-2xl group`}>
-                      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-all duration-500 group-hover:backdrop-blur-none" />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center relative z-10">
-                        <product.icon className="w-24 h-24 text-white mb-6 animate-pulse" />
-                        <h3 className="text-3xl font-display font-bold text-white mb-2">{product.name}</h3>
-                        <p className="text-white/80 font-mono text-sm uppercase tracking-widest">{product.tagline}</p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                </div>
-
-                {/* Details */}
-                <div className="w-full lg:w-7/12">
-                  <FadeIn delay={0.2} direction={i % 2 === 0 ? "left" : "right"}>
+                {/* Details (always on the left for consistent layout and vertical rhythm) */}
+                <div className="w-full lg:w-7/12 order-2 lg:order-1">
+                  <FadeIn delay={0.2} direction="up">
                     <span className="text-xs font-mono text-primary uppercase tracking-widest font-semibold block mb-4">SaaS Solution</span>
                     <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-foreground">{product.name}</h2>
                     <p className="text-muted-foreground text-lg mb-8 leading-relaxed">{product.desc}</p>
@@ -161,6 +298,18 @@ export default function Products() {
                         </GlowingButton>
                       </div>
                     )}
+                  </FadeIn>
+                </div>
+
+                {/* Visual Card (always on the right) */}
+                <div className="w-full lg:w-5/12 order-1 lg:order-2">
+                  <FadeIn delay={0.1} direction="up">
+                    <div className={`relative aspect-square rounded-3xl bg-gradient-to-br ${product.color} p-4 overflow-hidden shadow-2xl group flex items-center justify-center`}>
+                      <div className="absolute inset-0 bg-black/10 transition-all duration-500 group-hover:bg-black/5" />
+                      <div className="w-full h-full relative z-10 transform group-hover:scale-[1.02] transition-transform duration-500">
+                        <ProductMockup id={product.id} />
+                      </div>
+                    </div>
                   </FadeIn>
                 </div>
               </div>
