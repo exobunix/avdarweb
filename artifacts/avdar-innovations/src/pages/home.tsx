@@ -130,7 +130,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-8 border-primary/30"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs font-mono text-primary uppercase tracking-wider">Avdar OS 2.0 Now Live</span>
+            <span className="text-xs font-mono text-primary tracking-wider">Avdar OS 2.0 Now Live</span>
           </motion.div>
 
           <AnimatedText 
@@ -202,8 +202,8 @@ export default function Home() {
               <FadeIn key={i} delay={i * 0.1}>
                 <GlassCard className="flex flex-col relative overflow-hidden group h-full border border-border">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform duration-700 ease-out group-hover:scale-[2] group-hover:bg-primary/10" />
-                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-primary mb-6 relative z-10 border border-white/10 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-primary mb-4 relative z-10 border border-white/10 group-hover:bg-primary/20 transition-colors">
+                    <feature.icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-xl font-display font-bold mb-3 relative z-10 text-foreground">{feature.title}</h3>
                   <p className="text-muted-foreground leading-relaxed relative z-10">{feature.desc}</p>
@@ -217,14 +217,9 @@ export default function Home() {
       {/* Services Highlight */}
       <section className="py-24 relative">
         <div className="container mx-auto px-6">
-          <FadeIn className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 text-foreground">Ecosystem of Innovation</h2>
-              <p className="text-muted-foreground max-w-xl text-lg">Comprehensive digital transformation through cutting-edge architecture and AI integration.</p>
-            </div>
-            <Link href="/services" className="flex items-center gap-2 text-primary hover:text-foreground transition-colors group">
-              View all services <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </Link>
+          <FadeIn className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 text-foreground">Ecosystem of Innovation</h2>
+            <p className="text-muted-foreground max-w-xl text-lg">Comprehensive digital transformation through cutting-edge architecture and AI integration.</p>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -240,6 +235,12 @@ export default function Home() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.3} className="mt-12 flex justify-center">
+            <Link href="/services" className="flex items-center gap-2 text-primary hover:text-foreground transition-colors group px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-all font-medium text-sm">
+              View all services <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </FadeIn>
         </div>
       </section>
 
@@ -277,25 +278,24 @@ export default function Home() {
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">A systematic, transparent approach to translating complex business requirements into elegant digital solutions.</p>
           </FadeIn>
 
-          <div className="relative max-w-5xl mx-auto">
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
+          <div className="relative max-w-3xl mx-auto">
+            <div className="absolute left-5 top-0 bottom-0 w-px bg-border" />
             
             <div className="space-y-12">
               {processes.map((proc, i) => (
                 <FadeIn 
                   key={i}
-                  direction={i % 2 === 0 ? "right" : "left"}
-                  delay={i * 0.1}
+                  direction="up"
+                  delay={i * 0.05}
                 >
-                  <div className={`flex flex-col md:flex-row items-center gap-8 group ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
-                    <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                      <h3 className="text-2xl font-display font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{proc.title}</h3>
-                      <p className="text-muted-foreground">{proc.desc}</p>
-                    </div>
-                    <div className="relative shrink-0 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-background border-4 border-border text-primary font-mono font-bold text-sm group-hover:border-primary/50 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                  <div className="flex items-start group relative pl-16">
+                    <div className="absolute left-0 top-0 shrink-0 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-background border-4 border-border text-primary font-mono font-bold text-sm group-hover:border-primary/50 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                       {proc.num}
                     </div>
-                    <div className="w-full md:w-1/2" />
+                    <div className="flex-grow text-left">
+                      <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{proc.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{proc.desc}</p>
+                    </div>
                   </div>
                 </FadeIn>
               ))}
@@ -331,11 +331,8 @@ export default function Home() {
 
       {/* Industries Preview Strip */}
       <section className="py-16 border-y border-border overflow-hidden flex flex-col items-center">
-        <div className="container mx-auto px-6 mb-10 text-center flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-6 mb-10 text-center">
           <h2 className="text-2xl font-display font-bold text-foreground">Industries We Transform</h2>
-          <Link href="/industries" className="text-primary text-sm font-semibold hover:text-foreground transition-colors flex items-center gap-1">
-            See all industries <ChevronRight className="w-4 h-4" />
-          </Link>
         </div>
         
         <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
@@ -347,6 +344,12 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link href="/industries" className="text-primary text-sm font-semibold hover:text-foreground transition-colors flex items-center gap-1 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 transition-all">
+            See all industries <ChevronRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

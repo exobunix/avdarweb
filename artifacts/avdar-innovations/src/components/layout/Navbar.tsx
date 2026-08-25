@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, Sun, Moon } from "lucide-react";
 import { useGetSiteSettings, useListNavLinks } from "@workspace/api-client-react";
 import { useTheme } from "@/hooks/useTheme";
+import { GlowingButton } from "@/components/ui/animated-components";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -98,12 +99,10 @@ export function Navbar() {
                 {mode === "dark" ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-blue-500" />}
               </button>
 
-              <Link href="/contact" className="relative group overflow-hidden rounded-full p-[1px]">
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-orange-500 rounded-full opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative bg-background/90 backdrop-blur-md px-6 py-2 rounded-full flex items-center gap-2 transition-all duration-300 group-hover:bg-background/50">
-                  <span className="text-sm font-semibold text-white">Book Consultation</span>
-                  <ChevronRight className="w-4 h-4 text-orange-400 group-hover:translate-x-1 transition-transform" />
-                </div>
+              <Link href="/contact">
+                <GlowingButton variant="primary" className="py-2.5 px-6">
+                  Book Consultation
+                </GlowingButton>
               </Link>
             </div>
 
